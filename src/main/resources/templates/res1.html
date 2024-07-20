@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Form</title>
+	<link rel="stylesheet" href="../CSS/res1.css">
+	<style>
+		::selection {
+			background-color: rgb(71, 199, 71);
+			;
+			color: white;
+			text-shadow: 1px 1px 2px black;
+
+		}
+	</style>
+</head>
+
+<body>
+	<div class="form-container">
+		<div class="row">
+			<form id="contact-form">
+				<h2>Volunteer Registration</h2>
+				<div class="form-group1">
+					<label for="First">First Name:</label><br>
+					<input type="text" id="fname" name="First Name" required><br><br>
+
+					<label for="Middle">Middle Name:</label><br>
+					<input type="text" id="mname" name="Middle Name" required><br><br>
+
+					<label for=":Last">Last Name:</label><br>
+					<input type="text" id="lname" name="Last Name" required><br><br>
+
+					<label for="Last">Phone Number:</label><br>
+					<input type="text" placeholder="90029xxxxx" id="P-no" name="Phone Number" required><br><br>
+
+					<label for="email">Email:</label><br>
+					<input type="email" placeholder="villdev24@gmail.com" id="email" name="email" required>
+					<br><br>
+				</div>
+		</div>
+		<br>
+
+		<div class="form-group2">
+			GENDER <br><br>
+			<label for="Male">Male:</label>
+			<input type="radio" name="Male" value="m" id="male">
+
+			<label for="Female">Female:</label>
+			<input type="radio" class="form-control" id="femail" name="Female">
+
+			<label for="Other">Others:</label>
+			<input type="radio" class="form-control" id="other" name="Other"><br><br><br>
+
+			Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="Date" class="form-control" id="date"
+				name="Date of Birth"><br><br><br>
+		</div><br>
+		<div class="form-group">
+			Blood Group:
+			<select name="drop-down">
+				<option value="A+">A+</option>
+				<option value="AB+">AB+</option>
+				<option value="B+">B+</option>
+				<option value="O+">O+</option>
+				<option value="O-">O-</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			Sclect id proof:
+			<select name="drop-down">
+				<option value="Aadhar">Aadhar</option>
+				<option value="Voter">Voter</option>
+				<option value="Pan">Pan</option>
+				<option value="Passport">Passport</option>
+				<option value="Drive licence">Driving licence</option>
+			</select><br><br>
+			Choose your file:<input type="file" class="form-control" id="file" name="file">
+		</div>
+
+		<div class="form-group">
+			<label for="skills">Add Your Skills:</label>
+			<select id="skills" name="skills[]" multiple required>
+				<!-- <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option> -->
+			</select>
+			<input type="text" id="new-skill" placeholder="Enter your skill">
+			<button type="button" onclick="addSkill()">Add Skill</button><br>
+			<button type="button" onclick="deleteSkill()">Delete Skill</button>
+			</form>
+
+			<script>
+				function addSkill() {
+					var skillInput = document.getElementById('new-skill');
+					var skillValue = skillInput.value.trim();
+					if (skillValue === '') {
+						alert('Please enter a skill.');
+						return;
+					}
+
+					var skillsSelect = document.getElementById('skills');
+					var newOption = document.createElement('option');
+					newOption.value = skillValue.toLowerCase().replace(/\s+/g, '-');
+					newOption.text = skillValue;
+					newOption.selected = true;
+
+					skillsSelect.add(newOption);
+					skillInput.value = ''; // Clear the input
+				}
+				function deleteSkill() {
+					var skillsSelect = document.getElementById('skills');
+					var selectedOptions = Array.from(skillsSelect.selectedOptions);
+
+					if (selectedOptions.length === 0) {
+						alert('Please select a skill to delete.');
+						return;
+					}
+
+					selectedOptions.forEach(option => {
+						skillsSelect.remove(option.index);
+					});
+				}
+			</script>
+		</div>
+		<div class="form-group">
+			<label for="message">Message:</label>
+			<textarea id="message" name="message" required></textarea>
+		</div>
+		<button type="submit">Submit</button>
+		</form>
+	</div>
+	<script>
+		document.getElementById('contact-form').addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var name = document.getElementById('name').value.trim();
+			var email = document.getElementById('email').value.trim();
+			var message = document.getElementById('message').value.trim();
+
+			if (!name || !email || !message) {
+				alert('Please fill in all fields.');
+			} else {
+				alert('Form submitted successfully!');
+				// Here you can add code to actually submit the form data
+			}
+		});
+	</script>
+
+</body>
+
+</html>
