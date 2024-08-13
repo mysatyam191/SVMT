@@ -13,8 +13,12 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home(Model model) {
-		String about = homeService.about();
-		model.addAttribute("about", about);
+		try {
+			String about = homeService.about();
+			model.addAttribute("about", about);
+		} catch (Exception e) {
+			System.err.println("Error in fetching about value");
+		}
 		return "index";
 	}
 }
