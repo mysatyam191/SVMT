@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +24,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/login", "/resources/**", "/CSS/**", "/fonts/**", "/IMG/**").permitAll()
-		.antMatchers("/register", "/resources/**", "/CSS/**", "/fonts/**", "/IMG/**", "/js/**").permitAll()
+		.antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
 		.antMatchers("/users/addNew").permitAll()
 		.antMatchers("/", "/HTML/**", "/index").permitAll()
+		.antMatchers( "/admin").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")

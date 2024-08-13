@@ -35,6 +35,11 @@ public class ApplicationController {
 		return "Volunteer_login";
 	}
 
+	@GetMapping("admin")
+	public String adminPage() {
+		return "admin";
+	}
+
 	@GetMapping("/index")
 	public String goHome() {
 		return "index";
